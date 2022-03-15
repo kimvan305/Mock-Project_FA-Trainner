@@ -84,7 +84,3 @@ lambda_handler(event)
 response_pr = dynamodb.query(TableName="count_row_csv")
 
 print(response_pr)
-
-#print('Existing buckets:')
-#for bucket in response['Buckets']:
-#print(f'  {bucket["Name"]}')

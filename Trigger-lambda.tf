@@ -1,5 +1,5 @@
 resource "aws_s3_bucket_notification" "lambda-trigger" {
-  bucket = "${aws_s3_bucket.bucket-test.id}"
+  bucket = "${aws_s3_bucket.bucket-csv.id}"
 
   lambda_function {
     lambda_function_arn = "${aws_lambda_function.lambda-count.arn}"
