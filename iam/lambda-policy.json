@@ -8,8 +8,8 @@
         ],
         "Effect"   : "Allow",
         "Resource" : [
-          "arn:aws:s3:::${aws_s3_bucket.bucket-test.id}",
-          "arn:aws:s3:::${aws_s3_bucket.bucket-test.id}/*"
+          "arn:aws:s3:::${aws_s3_bucket.bucket-csv.id}",
+          "arn:aws:s3:::${aws_s3_bucket.bucket-csv.id}/*"
           ]
         },
         {
