@@ -1,5 +1,5 @@
-resource "aws_dynamodb_table" "count_row_csv" {
-  name           = "count_row_csv"
+resource "aws_dynamodb_table" "count_row_csv_dynamodb" {
+  name           = "count_row_csv_dynamodb"
   billing_mode   = "PROVISIONED"
   read_capacity  = 10
   write_capacity = 10

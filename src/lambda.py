@@ -9,14 +9,13 @@ s3 = boto3.client('s3',endpoint_url="http://localhost:4566",region_name = "ap-so
 dynamodb = boto3.client('dynamodb',endpoint_url="http://localhost:4566",region_name = "ap-southeast-2")
 #response = s3.list_buckets()
 # read csv via get_objects method, import csv to read file
-#def handler(event, contex):
 def count_row_s3(bucket_s3,key_s3):
     response_1=s3.get_object(Bucket=bucket_s3,Key=key_s3)["Body"].read()
     count = response_1.decode('utf8').count('\n')-1
     return count
 def put_dynamodb(num):
     #table = dynamodb.Table('count-row-csv')
-    response = dynamodb.put_item(TableName="count_row_csv",Item=
+    response = dynamodb.put_item(TableName="count_row_csv_dynamodb",Item=
     {
         'row': {
             'N': str(num)}

@@ -8,8 +8,8 @@
         ],
         "Effect"   : "Allow",
         "Resource" : [
-          "arn:aws:s3:::${aws_s3_bucket.bucket-csv.id}",
-          "arn:aws:s3:::${aws_s3_bucket.bucket-csv.id}/*"
+          "arn:aws:s3:::${aws_s3_bucket.csv-bucket.id}",
+          "arn:aws:s3:::${aws_s3_bucket.csv-bucket.id}/*"
           ]
         },
         {
@@ -20,7 +20,7 @@
           ],
           "Effect"   : "Allow",
           "Resource" : [
-          "arn:aws:s3:::${aws_dynamodb_table.count_row_csv.arn}"
+          "arn:aws:s3:::${aws_dynamodb_table.count_row_csv_dynomodb.arn}"
           ]
         }
     ]

@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution_policy" {
 resource "aws_lambda_permission" "allow_bucket" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.lambda-count.arn}"
+  function_name = "${aws_lambda_function.count-row-csv-lambda.arn}"
   principal     = "s3.amazonaws.com"
-  source_arn    = "${aws_s3_bucket.bucket-csv.arn}"
+  source_arn    = "${aws_s3_bucket.csv-bucket.arn}"
 }

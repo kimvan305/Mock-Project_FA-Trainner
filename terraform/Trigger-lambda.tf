@@ -1,8 +1,8 @@
 resource "aws_s3_bucket_notification" "lambda-trigger" {
-  bucket = "${aws_s3_bucket.bucket-csv.id}"
+  bucket = "${aws_s3_bucket.csv-bucket.id}"
 
   lambda_function {
-    lambda_function_arn = "${aws_lambda_function.lambda-count.arn}"
+    lambda_function_arn = "${aws_lambda_function.count-row-csv-lambda.arn}"
     events              = ["s3:ObjectCreated:*"]
     #filter_prefix       = "AWSLogs/"
     #filter_suffix       = ".log"
