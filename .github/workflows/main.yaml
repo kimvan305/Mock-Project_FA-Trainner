@@ -9,18 +9,25 @@ jobs:
   terraform-run-local:
     name: 'Terraform Run Local' 
     runs-on: ${{ matrix.os }}
+    services:
+      localstack:
+        image: localstack/localstack:latest
+        env:
+          SERVICES: cloudformation,iam,sts,ssm,s3,cloudwatch,cloudwatch-logs,lambda,dynamodb,apigateway
+          DEFAULT_REGION: ap-southeast-2
+          AWS_ACCESS_KEY_ID: mock_access_key
+          AWS_SECRET_ACCESS_KEY: mock_secret_key
+        ports:
+          - 4566:4566
+          - 4571:4571
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-    defaults:
-      run:
-        working-directory: ./terraform
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - uses: hashicorp/setup-terraform@v1
-    - name: Terraform init
-      run: |
-        terraform -chdir=terraform/ init
+    - name: Terraform Init
+      uses: hashicorp/terraform-github-actions/init@v0.4.0
+
 
 # This is a basic workflow to help you get started with Actions
