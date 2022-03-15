@@ -28,7 +28,7 @@ jobs:
       uses: hashicorp/terraform-github-actions/init@v0.4.0
     - name: Terraform Apply
       uses: hashicorp/terraform-github-actions/apply@v0.4.0
-      - name: Terraform Destroy
+    - name: Terraform Destroy
       uses: hashicorp/terraform-github-actions/destroy@v0.4.0
 
 
