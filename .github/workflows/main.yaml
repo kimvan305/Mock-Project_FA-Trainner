@@ -21,26 +21,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        terraform-versions: [0.11.14, latest]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       uses: hashicorp/setup-terraform@v1
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
 
     - name: Terraform Init
       id: init
       run: terraform init
-
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-
     - name: Terraform Plan
       id: plan
-      run: terraform plan -auto-approve
+      run: terraform plan 
       continue-on-error: true
 
 
