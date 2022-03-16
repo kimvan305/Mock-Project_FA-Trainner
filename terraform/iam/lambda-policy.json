@@ -20,7 +20,7 @@
           ],
           "Effect"   : "Allow",
           "Resource" : [
-          "arn:aws:s3:::${aws_dynamodb_table.count_row_csv_dynomodb.arn}"
+          "arn:aws:dynamodb:::${aws_dynamodb_table.count_row_csv_dynomodb.arn}"
           ]
         }
     ]

@@ -11,8 +11,8 @@ resource "aws_dynamodb_table" "count_row_csv_dynamodb" {
     type = "N"
   }
 
-  tags = {
-    Name        = "dynamodb-table"
-    #Environment = "production"
-  }
+  #tags = {
+  #  Name        = "dynamodb-table"
+  #  #Environment = "production"
+  #}
 }
