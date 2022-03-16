@@ -39,5 +39,6 @@ resource "aws_lambda_permission" "allow_bucket" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.count-row-csv-lambda.arn}"
   principal     = "s3.amazonaws.com"
+  #source_arn= "arn:aws:s3:::${aws_s3_bucket.csv-bucket.id}"
   source_arn    = "${aws_s3_bucket.csv-bucket.arn}"
 }

@@ -8,7 +8,7 @@ aws --endpoint-url=http://localhost:4566 dynamodb scan --table-name='count_row_c
 
 --list objects in s3
 
-aws --endpoint-url=http://localhost:4566 s3 ls s3://bucket-csv 
+aws --endpoint-url=http://localhost:4566 s3 ls s3://csv-bucket
 
 -- reference of boto3.client:
 
