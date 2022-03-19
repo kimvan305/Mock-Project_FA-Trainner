@@ -50,7 +50,7 @@ jobs:
       run:  terraform -chdir=terraform/ validate -no-color
     - name: Terraform Plan
       id: plan
-      run: terraform -chdir=terraform/ plan -no-color
+      run: terraform -chdir=terraform/ plan
 
     - name: Terraform Apply
       if: github.event_name == 'push'
