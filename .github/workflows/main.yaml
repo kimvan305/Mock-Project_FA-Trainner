@@ -40,13 +40,22 @@ jobs:
           pip install boto3
     - name: test install python
       run: python test_python.py 3.7
+    #Steps: Run Terraform
     - uses: hashicorp/setup-terraform@v1
+      name: Set up Terraform
     - name: Terraform Init
       id: init
       run: terraform init
-    # - name: Terraform Plan
-    #   id: plan
-    #   run: terraform plan 
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan 
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
+    - name: Terraform Apply
+      if: github.event_name == 'push'
+      run: terraform apply -auto-approve
+
     #   continue-on-error: true
 
 
