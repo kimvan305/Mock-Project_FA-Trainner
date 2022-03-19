@@ -1,6 +1,7 @@
 
 provider "aws" {
-  region                      = "ap-southeast-2"
+  #region                      = "ap-southeast-2"
+  region = var.AWS_DEFAULT_REGION
   access_key                  = "mock_access_key"
   secret_key                  = "mock_secret_key"
   s3_use_path_style         = true

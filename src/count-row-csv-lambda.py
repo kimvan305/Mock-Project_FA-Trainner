@@ -7,8 +7,8 @@ import urllib.parse
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 # access s3 
-s3 = boto3.client('s3',endpoint_url="http://localhost:4566",region_name = "ap-southeast-2")
-dynamodb = boto3.client('dynamodb',endpoint_url="http://localhost:4566",region_name = "ap-southeast-2")
+s3 = boto3.client('s3',endpoint_url="http://host.docker.internal:4566",region_name = "ap-southeast-1")
+dynamodb = boto3.client('dynamodb',endpoint_url="http://host.docker.internal:4566",region_name = "ap-southeast-1")
 #response = s3.list_buckets()
 # read csv via get_objects method, import csv to read file
 def _count_row_s3(bucket_s3,key_s3):

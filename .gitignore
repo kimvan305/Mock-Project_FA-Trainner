@@ -1,6 +1,7 @@
 #exclude following files
 terraform.tfstate
-*.tfstate
+*\.tfstate
 \.terraform
 *.csv
-*.zip
+*\.zip*
+*\.backup

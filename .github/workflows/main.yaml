@@ -22,17 +22,24 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         terraform-versions: [0.11.14, latest]
+        python-version: ['3.7.4', '3.8', '3.9', '3.10']
     steps:
     - uses: actions/checkout@v2
     #- name: Checkout
+    - name: Run with setup-python 3.7
+      uses: ./
+      with:
+        python-version: 3.7
+    - name: Verify 3.7
+      run: python src/count-row-csv-lambda.py 3.7
     - uses: hashicorp/setup-terraform@v1
     - name: Terraform Init
       id: init
       run: terraform init
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan 
-      continue-on-error: true
+    # - name: Terraform Plan
+    #   id: plan
+    #   run: terraform plan 
+    #   continue-on-error: true
 
 
 # This is a basic workflow to help you get started with Actions
