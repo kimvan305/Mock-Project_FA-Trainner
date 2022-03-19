@@ -44,16 +44,18 @@ jobs:
       name: Set up Terraform
     - name: Terraform Init
       id: init
-      run: /terraform terraform init
+      run: \terraform -chdir=terraform/ init
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color
+      run: terraform -chdir=terraform/ plan -no-color
     - name:  Terraform Validate
       id: validate
-      run: /terraform terraform validate -no-color
+      run:  terraform -chdir=terraform/ validate -no-color
     - name: Terraform Apply
       if: github.event_name == 'push'
-      run: /terraform terraform apply -auto-approve
+      run:  terraform -chdir=terraform/ apply -auto-approve
+    - name: Terraform Destroy
+      run:  terraform -chdir=terraform/ destroy -force
 
       continue-on-error: true
 
