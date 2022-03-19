@@ -21,8 +21,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        terraform-versions: [0.11.14, latest]
-        python-version: ['3.7.4', '3.8', '3.9', '3.10']
+        #terraform-versions: [0.11.14, latest]
+        python-version: ['3.7']
     steps:
     - uses: actions/checkout@v2
     #- name: Checkout
