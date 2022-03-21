@@ -5,3 +5,6 @@ terraform.tfstate
 *.csv
 *\.zip*
 *\.backup
+*\.lock.hcl
+
+
