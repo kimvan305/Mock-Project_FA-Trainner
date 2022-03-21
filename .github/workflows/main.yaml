@@ -44,18 +44,18 @@ jobs:
       name: Set up Terraform
     - name: Terraform Init
       id: init
-      run: terraform -chdir=terraform/ init
+      run: terraform -chdir=count-row_terraform/ init
     - name:  Terraform Validate
       id: validate
-      run:  terraform -chdir=terraform/ validate
+      run:  terraform -chdir=count-row_terraform/ validate
     - name: Terraform Plan
       id: plan
-      run: terraform -chdir=terraform/ plan
+      run: terraform -chdir=count-row_terraform/ plan
     - name: Terraform Apply
       if: github.event_name == 'push'
-      run:  terraform -chdir=terraform/ apply -auto-approve
+      run:  terraform -chdir=count-row_terraform/ apply -auto-approve
     - name: Terraform Destroy
-      run:  terraform -chdir=terraform/ destroy -force
+      run:  terraform -chdir=count-row_terraform/ destroy -force
 
       continue-on-error: true
 
