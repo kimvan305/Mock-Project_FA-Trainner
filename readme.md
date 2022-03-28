@@ -21,5 +21,7 @@ https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.ht
 -- install new library in Python: py -m pip install
 
 ENDPOINT= http://localhost:4566/restapis/rcniv5ij66/dev/_user_request_/mydemo_apigw
-echo "Testing GET:"
-curl -i ${ENDPOINT}
+
+Dynamic variables in Postman
+
+https://learning.postman.com/docs/writing-scripts/script-references/variables-list/

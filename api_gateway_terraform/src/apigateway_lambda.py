@@ -1,51 +1,51 @@
-from __future__ import print_function
-
-import boto3
+from datetime import datetime
+import calendar
+import random
+import time
 import json
+import boto3
+		
 
-print('Loading function')
-import base64
+	# The kinesis stream I defined in asw console
+stream_name = 'apigw_kinesis'
+	
+# event = {
 
+#   'queryStringParameters':{
+#     'First_Name': 'ho',
+#     'Last_Name':'van',
+#     'Phone_Number':'123',
+#     'Company_Name': 'fpt'
+#   }
+# }
+k_client = boto3.client('kinesis', endpoint_url="http://host.docker.internal:4566",region_name = "ap-southeast-1")
+	
+Partition_key = 'API'
+def lambda_handler(event,context):
 
-def lambda_handler(event, context):
-    '''Provide an event that contains the following keys:
-
-      - operation: one of the operations in the operations dict below
-      - tableName: required for operations that interact with DynamoDB
-      - payload: a parameter to pass to the operation being performed
-    '''
-    # TODO implement
-    message = 'Hello {} {}!'.format(event['queryStringParameters']['First_name'], event['queryStringParameters']['Last_name'])  
-
+    First_Name = event['queryStringParameters']['First_Name']
+    Last_Name = event['queryStringParameters']['Last_Name']
+    Phone_Number = event['queryStringParameters']['Phone_Number']
+    Company_Name = event['queryStringParameters']['Company_Name']
+    Job_Type = event['queryStringParameters']['Job_Type']
+    payload = {
+	            'First_name': First_Name,
+	            'Last_Name': Last_Name,
+	            'Phone_Number': Phone_Number,
+              'Company_Name': Company_Name,
+              'Job_Type' : Job_Type
+	            }
+    put_to_stream(payload, Partition_key)
     return {
         'statusCode': 200,
-        'body': message
+        'body': payload
     }
-    #print("Received event: " + json.dumps(event, indent=2))
-    # event_1 = base64.b64encode(event).decode("utf-8")
-    # print(json.dumps(event))
-    # return json.dumps(event)
-    # return { 
-    #      'message' : 'Hello world'
-    #  }
+	
 
 
-    # operation = event['operation']
-
-    # if 'tableName' in event:
-    #     dynamo = boto3.resource('dynamodb').Table(event['tableName'])
-
-    # operations = {
-    #     'create': lambda x: dynamo.put_item(**x),
-    #     'read': lambda x: dynamo.get_item(**x),
-    #     'update': lambda x: dynamo.update_item(**x),
-    #     'delete': lambda x: dynamo.delete_item(**x),
-    #     'list': lambda x: dynamo.scan(**x),
-    #     'echo': lambda x: x,
-    #     'ping': lambda x: 'pong'
-    # }
-
-    # if operation in operations:
-    #     return operations[operation](event.get('payload'))
-    # else:
-    #     raise ValueError('Unrecognized operation "{}"'.format(operation))
+	        
+def put_to_stream(payload, Partition_key):
+	        
+	# print (payload)
+	
+	put_response = k_client.put_record(StreamName=stream_name, Data =json.dumps(payload),PartitionKey=Partition_key)
