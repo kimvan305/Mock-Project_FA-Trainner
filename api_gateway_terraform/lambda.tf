@@ -62,16 +62,6 @@ resource "aws_iam_role_policy" "apigateway_lambda_policy" {
       "Resource":  "arn:aws:dynamodb:::${aws_dynamodb_table.count_row_csv.arn}"
     },
     {
-      "Sid": "",
-      "Resource": "*",
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Effect": "Allow"
-    },
-    {
       "Effect": "Allow",
       "Action": [
         "s3:ListBuckets",
@@ -88,6 +78,20 @@ resource "aws_iam_role_policy" "apigateway_lambda_policy" {
 EOF
 }
 
+    # {
+    #   "Sid": "",
+    #   "Resource": "*",
+    #   "Action": [
+    #     "logs:CreateLogGroup",
+    #     "logs:CreateLogStream",
+    #     "logs:PutLogEvents"
+    #   ],
+    #   "Effect": "Allow"
+    # },
+resource "aws_iam_role_policy_attachment" "apigw_lambda_policy" {
+  role       = aws_iam_role.apigateway_lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
 resource "aws_lambda_permission" "apigw_permission" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
