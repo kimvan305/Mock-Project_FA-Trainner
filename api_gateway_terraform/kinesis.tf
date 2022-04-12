@@ -14,6 +14,7 @@ resource "aws_kinesis_stream" "api_stream" {
 
 
 }
+
 resource "aws_kinesis_stream_consumer" "apigw_consumer" {
   name       = "apigw_consumer"
   stream_arn = aws_kinesis_stream.api_stream.arn
